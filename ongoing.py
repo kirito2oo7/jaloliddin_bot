@@ -427,7 +427,7 @@ def finish_file_upload(message):
         save_file(anime_kod, file["file_id"], file_n, file["file_type"])
     bot.reply_to(message, f"✅{file_n.capitalize()} saved successfully!")
     file_list = []
-     get_anime = False
+    get_anime = False
 
 
 
