@@ -234,6 +234,8 @@ def is_admin(user_id):
 channel_id = "@telegrabotkrito"
 
 def check_user_in_channel(message):
+    if message.chat.type in ["group", "supergroup"]:
+        return True
     conn = sqlite3.connect("bot_file.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM followers")
@@ -264,6 +266,8 @@ def a2(call):
 
 @bot.message_handler(commands = ['start'])
 def a1(message):
+    if message.chat.type in ["group", "supergroup"]:
+        return
     send_welcome(message)
 
 
@@ -809,6 +813,8 @@ def switch(message):
 #Back tugmasi---------------------------------------------
 @bot.message_handler(func= lambda message: message.text == "◀️Orqaga")
 def back(message):
+    if message.chat.type in ["group", "supergroup"]:
+        return
     global get_anime, get_anime_nom,anime_del, anime_change
     get_anime = False
     get_anime_nom = False
@@ -823,8 +829,8 @@ def back(message):
 def kod_check(message):
     global anime_kod, broadcast_mode
        
-    #if message.chat.type in ["group", "supergroup"] and "\bot" not in message.text:
-    #    return
+    if message.chat.type in ["group", "supergroup"] and "\bot" not in message.text:
+        return
 
     
     if is_admin(message.chat.id) and broadcast_mode:
