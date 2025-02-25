@@ -828,8 +828,9 @@ def back(message):
 @bot.message_handler(content_types=["text", "photo", "video", "audio", "document","sticker"], func= lambda message: holatbot )
 def kod_check(message):
     global anime_kod, broadcast_mode
-       
+    mmm = message.text
     if message.chat.type in ["group", "supergroup"] and "kkk" not in message.text:
+        mmm = message.text[4:]
         return
 
     
@@ -867,7 +868,7 @@ def kod_check(message):
         bot.send_message(message.chat.id, "Xabar yuborib tugallandi.")
     elif check_user_in_channel(message):
         try:
-            file_kod = int(message.text)
+            file_kod = int(mmm)
 
 
             if file_kod <= anime_kod:
@@ -894,7 +895,7 @@ def kod_check(message):
             else:
                 bot.send_message(message.chat.id, "🙁Bu kod bizning ro'yhatimizda topilmadi.")
         except ValueError:
-            ani_res_list = get_ani_kod(message.text.lower())
+            ani_res_list = get_ani_kod(mmm.lower())
             l  = ""
             for x in ani_res_list:
                 l += f"{x[0]}:  {x[1]}\n"
