@@ -839,7 +839,7 @@ def kod_check(message):
     mmm = message.text
     if message.chat.type in ["group", "supergroup"] and "kkk" not in message.text:
         return
-    else:
+    elif message.chat.type in ["group", "supergroup"] and "kkk" in message.text:
         mmm = message.text[4:]
 
     
