@@ -823,8 +823,8 @@ def back(message):
 def kod_check(message):
     global anime_kod, broadcast_mode
        
-    if message.chat.type in ["group", "supergroup"] and "\bot" not in message.text:
-        return
+    #if message.chat.type in ["group", "supergroup"] and "\bot" not in message.text:
+    #    return
 
     
     if is_admin(message.chat.id) and broadcast_mode:
