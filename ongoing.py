@@ -898,9 +898,12 @@ def kod_check(message):
         except ValueError:
             ani_res_list = get_ani_kod(mmm.lower())
             l  = ""
+            keyboard_ani = InlineKeyboardMarkup()
             for x in ani_res_list:
                 l += f"{x[0]}:  {x[1]}\n"
-            bot.send_message(message.chat.id, l)
+                but1 = InlineKeyboardButton(text= x[1] , url = f"https://tme/insta_animelar_bot?start={x[0]}")
+                keyboard_ani.add(but1)
+            bot.send_message(message.chat.id, text = "Natijalar" , reply_markup= keyboard_ani)
 
 
         except Exception as e:
