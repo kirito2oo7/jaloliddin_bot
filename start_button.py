@@ -83,7 +83,6 @@ def handle_start_button(call):
         for chan in ll:
             s:str = chan[2]
             n: int = chan[4]
-            print(s,n)
             cursor.execute("UPDATE followers SET now_follower = ? WHERE channel_url = ?", (n + 1, s))
             conn.commit()
             m:int = chan[3]
@@ -153,7 +152,6 @@ def send_welcome(message: types.Message):
         keyboard = InlineKeyboardMarkup()
         keyboard.add(InlineKeyboardButton("📱 Instagram", url="https://instagram.com/anipower_uz/"))
         for c in l:
-            print("c =", c[1], c[2])
             keyboard.add(InlineKeyboardButton(text= c[1], url= c[2]))
 
         start_button = InlineKeyboardButton("✅Tekshirish", callback_data="send_start")
