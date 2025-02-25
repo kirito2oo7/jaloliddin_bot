@@ -251,6 +251,11 @@ def check_user_in_channel(message):
             return False
     return True
 
+
+    
+
+
+
 # Starts bot--------------------------------------------------------------
 @bot.callback_query_handler(func=lambda call: call.data == "send_start")
 def a2(call):
@@ -817,6 +822,11 @@ def back(message):
 @bot.message_handler(content_types=["text", "photo", "video", "audio", "document","sticker"], func= lambda message: holatbot )
 def kod_check(message):
     global anime_kod, broadcast_mode
+       
+    if message.chat.type in ["group", "supergroup"] and "\bot" not in message.text:
+        return
+
+    
     if is_admin(message.chat.id) and broadcast_mode:
         conn = sqlite3.connect("bot_file.db")
         cursor = conn.cursor()
