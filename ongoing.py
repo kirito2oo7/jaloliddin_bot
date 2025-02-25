@@ -346,6 +346,7 @@ anime_del = False
 anime_change = False
 anime_kod = get_last_kod()[0]
 file_n: str = ""
+file_list = []
 
 @bot.message_handler(func = lambda message: message.text == "🎥Anime sozlash" and is_admin(message.chat.id))
 def create_keyboard_of_anime_change(message):
@@ -381,6 +382,7 @@ def get_file_name(message):
 @bot.message_handler(content_types=['photo', 'video'], func = lambda message: get_anime and is_admin(message.chat.id))
 def handle_file_upload(message):
     global anime_kod, file_n
+    file_id = None
     if message.photo:
         file_id = message.photo[-1].file_id  # Get the largest photo
         file_type = 'photo'
@@ -393,9 +395,24 @@ def handle_file_upload(message):
         return
 
     # Save file metadata to database
-    save_file(anime_kod, file_id, file_n,file_type)
-
+    #save_file(anime_kod, file_id, file_n,file_type)
+    if file_id:
+        file_list.append({"message_id": message.message_id, "file_id": file_id, "file_type": file_type})
+        file_list.sort(key=lambda x: x["message_id"])
+        
     bot.reply_to(message, f"✅{file_type.capitalize()} saved successfully!")
+
+@bot.message_handler(func = lambda message: is_admin(message.chat.id), commands= ["save"])
+def finish_file_upload(message):
+    global anime_kod, file_n, file_list
+    sorted_files = file_list
+    for file in sorted_files:
+        save_file(anime_kod, file["file_id"], file_n, file["file_type"])
+    bot.reply_to(message, f"✅{file_n.capitalize()} saved successfully!")
+    file_list = []
+
+
+
 
 @bot.message_handler(func= lambda message: message.text == "🗑Anime o'chrish" and is_admin(message.chat.id))
 def del_anime(message):
