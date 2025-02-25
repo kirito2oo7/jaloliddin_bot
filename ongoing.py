@@ -901,7 +901,7 @@ def kod_check(message):
             keyboard_ani = InlineKeyboardMarkup()
             for x in ani_res_list:
                 l += f"{x[0]}:  {x[1]}\n"
-                but1 = InlineKeyboardButton(text= x[1] , url = f"https://t.me/insta_animelar_bot?start={kd}")
+                but1 = InlineKeyboardButton(text= x[1] , url = f"https://t.me/insta_animelar_bot?start={x[0]}")
                 keyboard_ani.add(but1)
             bot.send_message(message.chat.id, text = "Natijalar" , reply_markup= keyboard_ani)
 
