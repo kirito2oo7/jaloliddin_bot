@@ -830,8 +830,9 @@ def kod_check(message):
     global anime_kod, broadcast_mode
     mmm = message.text
     if message.chat.type in ["group", "supergroup"] and "kkk" not in message.text:
-        mmm = message.text[4:]
         return
+    else:
+        mmm = message.text[4:]
 
     
     if is_admin(message.chat.id) and broadcast_mode:
