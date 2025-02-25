@@ -576,7 +576,7 @@ def get_post(message):
 def ready_post(message):
     global kd
     link = InlineKeyboardMarkup()
-    button = InlineKeyboardButton(text ="🔹👉Anime ko'rish" ,url = f"https://tme/insta_animelar_bot?start={kd}")
+    button = InlineKeyboardButton(text ="🔹👉Anime ko'rish" ,url = f"https://t.me/insta_animelar_bot?start={kd}")
     link.add(button)
     if message.content_type == "photo":
         bot.send_photo(message.chat.id, message.photo[-1].file_id, caption=message.caption, reply_markup= link)
@@ -901,7 +901,7 @@ def kod_check(message):
             keyboard_ani = InlineKeyboardMarkup()
             for x in ani_res_list:
                 l += f"{x[0]}:  {x[1]}\n"
-                but1 = InlineKeyboardButton(text= x[1] , url = f"https://tme/insta_animelar_bot?start={x[0]}")
+                but1 = InlineKeyboardButton(text= x[1] , url = f"https://t.me/insta_animelar_bot?start={kd}")
                 keyboard_ani.add(but1)
             bot.send_message(message.chat.id, text = "Natijalar" , reply_markup= keyboard_ani)
 
