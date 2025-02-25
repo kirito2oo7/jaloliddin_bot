@@ -394,7 +394,7 @@ def finish_file_upload(message):
         save_file(anime_kod, file["file_id"], file_n, file["file_type"])
     bot.reply_to(message, f"✅{file_n.capitalize()} saved successfully!")
     file_list = []
-     get_anime = False
+    get_anime = False
 
 @bot.message_handler(content_types=['photo', 'video'], func = lambda message: get_anime and is_admin(message.chat.id))
 def handle_file_upload(message):
