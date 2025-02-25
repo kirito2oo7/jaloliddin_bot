@@ -386,7 +386,15 @@ def get_file_name(message):
     get_anime = True
     get_anime_nom = False
     bot.send_message(message.chat.id , "🖼Ok, yuklamoqchi bo'lgan animening suratini tashlang.")
-
+@bot.message_handler(func = lambda message: is_admin(message.chat.id) and get_anime, commands= ["save"])
+def finish_file_upload(message):
+    global anime_kod, file_n, file_list ,  get_anime
+    sorted_files = file_list
+    for file in sorted_files:
+        save_file(anime_kod, file["file_id"], file_n, file["file_type"])
+    bot.reply_to(message, f"✅{file_n.capitalize()} saved successfully!")
+    file_list = []
+     get_anime = False
 
 @bot.message_handler(content_types=['photo', 'video'], func = lambda message: get_anime and is_admin(message.chat.id))
 def handle_file_upload(message):
