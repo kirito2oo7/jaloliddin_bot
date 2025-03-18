@@ -3,7 +3,7 @@ import sqlite3
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 import telebot
 
-API_key = "7875456211:AAG60eGvXGcnTHobLahwPxKVCBVIcr2Zx4Y"
+API_key = "7875456211:AAFwdKiWNQyS_AtV0GUJ7b6dCoGKwD9zu1o"
 
 
 
